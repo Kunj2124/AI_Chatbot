@@ -32,9 +32,7 @@ function App() {
 
     try {
       const response = await axios({
-        url: `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${
-          import.meta.env.VITE_API_GENERATIVE_LANGUAGE_CLIENT
-        }`,
+        url: `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${AIzaSyBwCo7UhrJENdN6TfGjMur699aBk6v8q2A}`,
         method: "post",
         data: {
           contents: [{ parts: [{ text: question }] }],
