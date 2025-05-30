@@ -31,13 +31,13 @@ function App() {
     setConversation((prev) => [...prev, { type: "answer", text: "..." }]);
 
     try {
-      const response = await axios({
-        url: `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=AIzaSyAcdSfgoiG291CFniF1nQ4UMlqLch2DAgo`,
-        method: "post",
-        data: {
-          contents: [{ parts: [{ text: question }] }],
-        },
-      });
+      const response = await axios({ 
+        url: `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key=AIzaSyCVCqi4_-TKOnhSJtdntH-oeQIAoLi_zMA`, 
+        method: "post", 
+        data: { 
+          contents: [{ parts: [{ text: question }] }], 
+        }, 
+    });
 
 
       const answerText =
