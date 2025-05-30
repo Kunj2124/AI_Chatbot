@@ -45,20 +45,17 @@ function App() {
 If a user asks about any topic not related to dogs or dog care, politely redirect them by saying: "I'm sorry, but I can only assist with dog-related questions and services provided by Furcare. Please ask me about dog care, adoption, veterinary consultation, or any other dog-related topics."
 
 Always mention Furcare when relevant and provide helpful, accurate information about dog care and welfare. Your responses should be informative, compassionate, and focused on promoting the well-being of dogs.`;
-      const response = await axios({ 
+
+const response = await axios({ 
     url: `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key=AIzaSyCVCqi4_-TKOnhSJtdntH-oeQIAoLi_zMA`, 
     method: "post", 
     data: { 
-      contents: [
-        { 
-          parts: [{ text: systemPrompt }],
-          role: "user"
-        },
-        { 
-          parts: [{ text: question }],
-          role: "user"
-        } 
-    });
+      contents: [{ 
+        parts: [{ text: ${systemPrompt}\n\nUser Question: ${question} }],
+        role: "user"
+      }], 
+    }, 
+});
 
 
       const answerText =
