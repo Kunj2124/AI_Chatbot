@@ -31,12 +31,33 @@ function App() {
     setConversation((prev) => [...prev, { type: "answer", text: "..." }]);
 
     try {
+      const systemPrompt = `You are a specialized AI assistant for Furcare, a dog care and adoption organization. You should ONLY respond to questions related to:
+
+1. Stray dog care techniques and management
+2. Dog adoption processes and procedures
+3. Pet dog care, training, and health
+4. Veterinary consultation and medical advice for dogs
+5. Dog behavior, nutrition, grooming, and wellness
+6. Dog rescue operations and rehabilitation
+7. Dog breed information and characteristics
+8. Dog safety and emergency care
+
+If a user asks about any topic not related to dogs or dog care, politely redirect them by saying: "I'm sorry, but I can only assist with dog-related questions and services provided by Furcare. Please ask me about dog care, adoption, veterinary consultation, or any other dog-related topics."
+
+Always mention Furcare when relevant and provide helpful, accurate information about dog care and welfare. Your responses should be informative, compassionate, and focused on promoting the well-being of dogs.`;
       const response = await axios({ 
-        url: `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key=AIzaSyCVCqi4_-TKOnhSJtdntH-oeQIAoLi_zMA`, 
-        method: "post", 
-        data: { 
-          contents: [{ parts: [{ text: question }] }], 
-        }, 
+    url: `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key=AIzaSyCVCqi4_-TKOnhSJtdntH-oeQIAoLi_zMA`, 
+    method: "post", 
+    data: { 
+      contents: [
+        { 
+          parts: [{ text: systemPrompt }],
+          role: "user"
+        },
+        { 
+          parts: [{ text: question }],
+          role: "user"
+        } 
     });
 
 
